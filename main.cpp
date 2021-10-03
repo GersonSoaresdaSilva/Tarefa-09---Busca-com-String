@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <math.h>
 #define max 10  //definir tamanho da estrutura de armazenamento
 
 using namespace std;
@@ -38,21 +39,21 @@ int main () {
 string ler_nome () {
   string nome;
   cin.ignore ();
-  cout << "\nDigite o nome.: ";
+  cout << "\nDigite o nome.....: ";
   getline(cin, nome);
   return nome;
 }
 
 double ler_salario () {
   double salario;
-  cout << "Digite o salário.: ";
+  cout << "Digite o salário..: ";
   cin >> salario;
   return salario;
 }
 
 int ler_telefone () {
   int telefone;
-  while (telefone < 900000000 || telefone > 999999999) {
+  while (telefone < 50000000 || telefone > 999999999) {
     cout << "Digite o telefone.: ";
     cin >> telefone;
     if (telefone < 50000000 || telefone > 999999999) {
@@ -67,13 +68,14 @@ void inserir () {
   c.nome [c.topo] = aux_nome;
   c.salario [c.topo] = ler_salario();
   c.telefone [c.topo] = ler_telefone();
+  c.topo++;
   system ("sleep 4");
 }
 
 void listar () {
   system ("clear");
   cout << "\n***  Listar Resultados  ***" << endl;
-  for (int i = 0; i <= c.topo; i++) {
+  for (int i = 0; i <= c.topo - 1; i++) {
     cout << "\nPosição [" << i << "]" << endl;
     cout << "Nome.....: " << c.nome [i] << endl;
     cout << "Salario..: " << c.salario [i] << endl;
@@ -86,8 +88,8 @@ void bubble_sort_nom () {
   string aux_nome;
   int aux_telefone;
   double aux_salario;
-  for (int i = 0; i <= max -2; i++) {
-    for (int j = i; j <= max - 1; j ++) {
+  for (int i = 0; i <= c.topo -2; i++) {
+    for (int j = i; j <= c.topo -1; j ++) {
       if (c.nome [i] > c.nome [j]) {
         aux_nome = c.nome [i];
         c.nome [i] = c.nome [j];
@@ -103,6 +105,8 @@ void bubble_sort_nom () {
       }
     }
   }
+  cout << "\nDados organizados com Sucesso!" << endl;
+  system ("sleep 4");
 }
 
 void controle_pesq () {
@@ -142,11 +146,11 @@ void pesq_nome (int item_pesq) {
   }
 
   if (busca_nome == -1) {
-    cout << "\nNome pesquisado: " << nome_pesq << " , não foi localizado!" << endl;
+    cout << "\nNome pesquisado: " << nome_pesq << ", não foi localizado!" << endl;
   }
-  else {
+  else if (busca_nome >= 0) {
     cout << "\n*** Nome localizado com Sucesso! ***" << endl;
-    cout << "\nPosição [" << c.topo [c.nome] << "]" << endl;
+    cout << "\nPosição [" << busca_nome << "]" << endl;
     cout << "Nome.....: " << c.nome [busca_nome] << endl;
     cout << "Salario..: " << c.salario [busca_nome] << endl;
     cout << "Telefone.: " << c.telefone [busca_nome] << endl;
@@ -155,7 +159,7 @@ system ("sleep 4");
 }
 
 int busca_seq_nom (string nom) {
-  for (int i = 0; i <= max - 1; i++) {
+  for (int i = 0; i <= c.topo - 1; i++) {
     if (nom == c.nome [i]) {
       return i;
     }
@@ -165,18 +169,23 @@ int busca_seq_nom (string nom) {
 
 int busca_bin_nom (string nom) {
   int esq = 0, mei, dir = max;
-  for (int i = esq; i <= dir; i++) {
-    mei = (esq + dir) / 2;
-    if (nom == c.nome [mei]) {
-      return mei;
+    for (int i = esq; i <= dir; i++) {  
+      mei = (esq + dir) / 2;
+      cout << "\nesq" << esq;
+      cout << "\nmei" << mei;
+      cout << "\ndir" << dir;
+       
+      if (nom == c.nome [mei]) {
+        return mei;
+      }
+      else if (nom > c.nome [mei]) {
+        esq = mei;
+      }
+      else {
+        dir = mei;
+      }
     }
-    else if (nom > c.nome [mei]) {
-      esq = mei;
-    }
-    else {
-      dir = mei;
-    }
-  }
+    system ("sleep 4");
 return -1;
 }
 
