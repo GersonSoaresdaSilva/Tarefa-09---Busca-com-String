@@ -25,7 +25,6 @@ void listar ();
 void bubble_sort_nom (); //organizar dados pelo nome
 void controle_pesq (); //submenu para controlar pesquisa
 void pesq_nome (int item_pesq); //pesquisa por string. A estrutura deve ser organizada antes
-//void pesq_bin_nome (); //pesquisa por string. A estrutura deve ser organizada antes
 int busca_seq_nom (string nom); //busca sequencial por nome
 int busca_bin_nom (string nom); //busca binária por nome
 void controle ();
@@ -56,8 +55,8 @@ int ler_telefone () {
   while (telefone < 900000000 || telefone > 999999999) {
     cout << "Digite o telefone.: ";
     cin >> telefone;
-    if (telefone < 900000000 || telefone > 999999999) {
-      cout << "\nERRO: formato inválido!";
+    if (telefone < 50000000 || telefone > 999999999) {
+      cout << "\nERRO: formato de telefone inválido!\n" << endl;
     }
   }
   return telefone;
@@ -180,26 +179,6 @@ int busca_bin_nom (string nom) {
   }
 return -1;
 }
-
-/*void pesq_bin_nome () {
-  string nome_pesq;
-  int busca_nome;
-  cout << "\n*** Pesquisa Binária ***" << endl;
-  cin.ignore();
-  cout << "\nDigite o nome.: ";
-  getline(cin, nome_pesq);
-  busca_nome = busca_bin_nom(nome_pesq);
-  if (busca_nome == -1) {
-    cout << "\nNome pesquisado: " << busca_nome << " , não foi localizado!" << endl;
-  }
-  else {
-    cout << "\n*** Nome localizado com Sucesso! ***" << endl;
-    cout << "\nPosição [" << c.topo [c.nome] << "]" << endl;
-    cout << "Nome.....: " << c.nome [busca_nome] << endl;
-    cout << "Salario..: " << c.salario [busca_nome] << endl;
-    cout << "Telefone.: " << c.telefone [busca_nome] << endl;
-  }
-}*/
 
 void controle () {
   int item_menu;
