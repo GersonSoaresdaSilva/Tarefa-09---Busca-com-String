@@ -64,13 +64,19 @@ int ler_telefone () {
 }
 
 void inserir () {
+if (c.topo <= max) {
+  cout << "\nERRO: Limite de Dados foi atingidos!" << endl;
+}
+else {
   string aux_nome = ler_nome();
   c.nome [c.topo] = aux_nome;
   c.salario [c.topo] = ler_salario();
   c.telefone [c.topo] = ler_telefone();
   c.topo++;
+}
   system ("sleep 4");
 }
+
 
 void listar () {
   system ("clear");
