@@ -8,14 +8,14 @@
 
 using namespace std;
 //criar STRUCT
-typedef struct CLIENTE cli;
+typedef struct CLIENTE cli; //cli é o alias p/ struct CLIENTE
 struct CLIENTE {
   int topo;
   string nome [max];
   double salario [max];
   int telefone [max];
 };
-cli c;
+cli c; //c é o tipo de struct p/ alias cli
 
 //subrotinas
 string ler_nome ();
