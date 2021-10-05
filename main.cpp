@@ -75,7 +75,7 @@ void inserir () {
 void listar () {
   system ("clear");
   cout << "\n***  Listar Resultados  ***" << endl;
-  for (int i = 0; i <= c.topo - 1; i++) {
+  for (int i = 0; i <= max- 1; i++) {
     cout << "\nPosição [" << i << "]" << endl;
     cout << "Nome.....: " << c.nome [i] << endl;
     cout << "Salario..: " << c.salario [i] << endl;
