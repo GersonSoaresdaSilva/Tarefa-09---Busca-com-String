@@ -100,86 +100,87 @@ void listar () {
 void bubble_sort_nom () {
     if (vazia() == true) {
     cout << "\nERRO: Lista Vazia!" << endl;
-  }
-  else {
-    string aux_nome;
-    int aux_telefone;
-    double aux_salario;
-    for (int i = 0; i <= max -2; i++) {
-      for (int j = i; j <= max -1; j ++) {
-        if (c.nome [i] > c.nome [j]) {
-          aux_nome = c.nome [i];
-          c.nome [i] = c.nome [j];
-          c.nome [j] = aux_nome;
-
-          aux_salario = c.salario [i];
-          c.salario [i] = c.salario [j];
-          c.salario [j] = aux_salario;
-
-          aux_telefone = c.telefone [i];
-          c.telefone [i] = c.telefone [j];
-          c.telefone [j] = aux_telefone;
-      }
     }
-  cout << "\nDados organizados com Sucesso!" << endl;
-  }  
-  }
+    else {
+      string aux_nome;
+      int aux_telefone;
+      double aux_salario;
+      for (int i = 0; i <= max -2; i++) {
+        for (int j = i; j <= max -1; j ++) {
+          if (c.nome [i] > c.nome [j]) {
+            aux_nome = c.nome [i];
+            c.nome [i] = c.nome [j];
+            c.nome [j] = aux_nome;
+
+            aux_salario = c.salario [i];
+            c.salario [i] = c.salario [j];
+            c.salario [j] = aux_salario;
+
+            aux_telefone = c.telefone [i];
+            c.telefone [i] = c.telefone [j];
+            c.telefone [j] = aux_telefone;
+          }
+        }
+      }
+    cout << "\nDados organizados com Sucesso!" << endl;  
+    } 
   system ("sleep 4");
 }
 
 void controle_pesq () {
-  int item_pesq;
-  while (true) {
-    system ("clear");
-    cout << "\n*** Menu de Pesquisa ***" << endl;
-    cout << "\n1 - Pesquisa Sequencial \n2 - Pesquisa Binária \n3 - Retornar \n4 - Sair \nOpção.: ";
-    cin >> item_pesq;
-    switch (item_pesq) {
-      case 1: pesq_nome(item_pesq); break;
-      case 2: pesq_nome(item_pesq); break;
-      case 3: controle(); break;
-      case 4: exit (0); break;
-      default: cout << "\nERRO: Opção Inválida!"; system ("sleep 4"); break;
+    if (vazia() == true) {
+      cout << "\nERRO: Lista Vazia!" << endl;
     }
-  }
+    else {
+      int item_pesq;
+      while (true) {
+        system ("clear");
+        cout << "\n*** Menu de Pesquisa ***" << endl;
+        cout << "\n1 - Pesquisa Sequencial \n2 - Pesquisa Binária \n3 - Retornar \n4 - Sair \nOpção.: ";
+        cin >> item_pesq;
+      switch (item_pesq) {
+        case 1: pesq_nome(item_pesq); break;
+        case 2: pesq_nome(item_pesq); break;
+        case 3: controle(); break;
+        case 4: exit (0); break;
+        default: cout << "\nERRO: Opção Inválida!" << endl; system ("sleep 4"); break;
+      }
+      }
+    }
+system ("sleep 4");
 }
 
 void pesq_nome (int item_pesq) {
-  if (vazia() == true) {
-    cout << "\nERRO: Lista Vazia!" << endl;
+  string nome_pesq;
+  int busca_nome;
+
+  if (item_pesq == 1) {
+    cout << "\n*** Pesquisa Sequencial ***" << endl;
+    cin.ignore ();
+    cout << "\nDigite o nome.: ";
+    getline(cin, nome_pesq);
+    busca_nome = busca_seq_nom(nome_pesq);
+  }
+  else if (item_pesq == 2) {
+    cout << "\n*** Pesquisa Binária ***" << endl;
+    cin.ignore();
+    cout << "\nDigite o nome.: ";
+    getline(cin, nome_pesq);
+    busca_nome = busca_bin_nom(nome_pesq);
+  }
+
+  if (busca_nome == -1) {
+    cout << "\nNome pesquisado: " << nome_pesq << ", não foi localizado!" << endl;
   }
   else {
-    string nome_pesq;
-    int busca_nome;
-
-    if (item_pesq == 1) {
-      cout << "\n*** Pesquisa Sequencial ***" << endl;
-      cin.ignore ();
-      cout << "\nDigite o nome.: ";
-      getline(cin, nome_pesq);
-      busca_nome = busca_seq_nom(nome_pesq);
-    }
-    else if (item_pesq == 2) {
-      cout << "\n*** Pesquisa Binária ***" << endl;
-      cin.ignore();
-      cout << "\nDigite o nome.: ";
-      getline(cin, nome_pesq);
-      busca_nome = busca_bin_nom(nome_pesq);
-    }
-
-    if (busca_nome == -1) {
-      cout << "\nNome pesquisado: " << nome_pesq << ", não foi localizado!" << endl;
-    }
-    else {
-      cout << "\n*** Nome localizado com Sucesso! ***" << endl;
-      cout << "\nPosição [" << busca_nome << "]" << endl;
-      cout << "Nome.....: " << c.nome [busca_nome] << endl;
-      cout << "Salario..: " << c.salario [busca_nome] << endl;
-      cout << "Telefone.: " << c.telefone [busca_nome] << endl;
-    }
+    cout << "\n*** Nome localizado com Sucesso! ***" << endl;
+    cout << "\nPosição [" << busca_nome << "]" << endl;
+    cout << "Nome.....: " << c.nome [busca_nome] << endl;
+    cout << "Salario..: " << c.salario [busca_nome] << endl;
+    cout << "Telefone.: " << c.telefone [busca_nome] << endl;
+  }
 system ("sleep 4");
-  } 
-}
+} 
 
 int busca_seq_nom (string nom) {
   for (int i = 0; i < max; i++) {
